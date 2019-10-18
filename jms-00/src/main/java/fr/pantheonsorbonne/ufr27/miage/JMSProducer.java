@@ -15,14 +15,23 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import org.apache.activemq.ActiveMQConnectionFactory;
+import org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory;
+
+/**
+ * THis class produces bean to be injected in JMS Classes
+ * 
+ * @author nherbaut
+ *
+ */
 public class JMSProducer {
 
+	// fake JNDI context to create object
 	private static final Context JNDI_CONTEXT;
 
 	static {
 		Hashtable<String, String> jndiBindings = new Hashtable<>();
-		jndiBindings.put("java.naming.factory.initial",
-				"org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory");
+		jndiBindings.put(Context.INITIAL_CONTEXT_FACTORY, ActiveMQInitialContextFactory.class.getName());
 		jndiBindings.put("connectionFactory.ConnectionFactory", "tcp://localhost:61616");
 		jndiBindings.put("queue.queues/OrderQueue", "OrderQueue");
 		Context c = null;
@@ -38,6 +47,11 @@ public class JMSProducer {
 		}
 	}
 
+	/**
+	 * 
+	 * @return
+	 * @throws NamingException
+	 */
 	@Produces
 	public Queue getJMSQueue() throws NamingException {
 		return (Queue) JNDI_CONTEXT.lookup("queues/OrderQueue");
@@ -48,5 +62,4 @@ public class JMSProducer {
 		return (ConnectionFactory) JNDI_CONTEXT.lookup("ConnectionFactory");
 	}
 
-	
 }

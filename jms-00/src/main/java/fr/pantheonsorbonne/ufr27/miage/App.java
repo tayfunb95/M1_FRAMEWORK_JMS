@@ -47,7 +47,7 @@ public class App {
 				Thread.sleep(100);
 			}
 			consumerThread.interrupt();
-			
+			Thread.sleep(1000);			
 
 			producer.close();
 			consumer.close();
