@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><diplomaInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../main/xsd/models.xsd">  <id>1</id>  <student>    <id>2606</id>    <firstName>Nicolas</firstName>    <lastName>Herbaut</lastName>  </student>  <grade>10.0</grade>  <major>CS</major></diplomaInfo>

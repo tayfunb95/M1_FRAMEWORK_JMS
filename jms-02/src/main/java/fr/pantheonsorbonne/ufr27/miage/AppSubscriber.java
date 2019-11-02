@@ -10,6 +10,8 @@ import javax.naming.NamingException;
 
 import org.apache.activemq.artemis.core.server.embedded.EmbeddedActiveMQ;
 
+
+
 public class AppSubscriber {
 	public static void main(String[] args) throws JMSException, NamingException, InterruptedException, IOException {
 
