@@ -13,5 +13,19 @@ Demonstrate a complex scenario where a webapp calls a remote service through JMS
 
 ```bash
 mvn clean package install
-mvn -T 3 exec:java
+```
+## start the broker ##
+```bash
+cd jms04-broker
+mvn exec:java
+```
+## start REST Api ##
+```bash
+cd jms04-webapp
+mvn exec:java
+```
+## start PDF Generator Service ##
+```bash
+cd jms04-pdfgenerator
+mvn exec:java
 ```
