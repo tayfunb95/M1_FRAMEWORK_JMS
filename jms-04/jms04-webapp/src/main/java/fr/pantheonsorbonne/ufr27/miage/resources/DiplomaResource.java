@@ -31,7 +31,6 @@ public class DiplomaResource {
 	@Inject
 	DiplomaRepository repository;
 
-
 	@Path("{diplomaid}")
 	@GET
 	@Produces(value = { MediaType.APPLICATION_OCTET_STREAM })
@@ -49,7 +48,7 @@ public class DiplomaResource {
 					.entity(data).build();
 
 		} else {
-			return Response.status(425).build();
+			return Response.status(202, "Diploma is not available yet, try again latter").build();
 		}
 	}
 

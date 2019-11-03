@@ -7,7 +7,7 @@
 
 	<artifactId>jms04-pdfgenerator</artifactId>
 
-	<name>diploma-generator</name>
+	
 
 
 	<properties>
@@ -142,17 +142,13 @@
 				</plugin>
 
 				<plugin>
-
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>exec-maven-plugin</artifactId>
 					<version>1.6.0</version>
 					<configuration>
-						<goal>java</goal>
-						<mainClass>fr.pantheonsorbonne.miage.App</mainClass>
-
-					</configuration>
-
-
+								<mainClass>fr.pantheonsorbonne.miage.PdfGeneratorMain</mainClass>
+								<skip>false</skip>
+							</configuration>
 				</plugin>
 
 
@@ -163,6 +159,12 @@
 
 			</plugins>
 		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
 	</build>
 	<parent>
 		<groupId>fr.pantheonsorbonne.ufr27.miage</groupId>

@@ -116,7 +116,22 @@
 					<artifactId>maven-project-info-reports-plugin</artifactId>
 					<version>3.0.0</version>
 				</plugin>
+
 			</plugins>
 		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.6.0</version>
+				<configuration>
+							<skip>false</skip>
+							<mainClass>fr.pantheonsorbonne.ufr27.miage.AppBroker</mainClass>
+
+
+						</configuration>
+				
+			</plugin>
+		</plugins>
 	</build>
 </project>

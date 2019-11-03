@@ -46,10 +46,11 @@ public abstract class AbstractDiplomaGenerator implements DiplomaGenerator {
 		try (ByteArrayOutputStream bos = new ByteArrayOutputStream();) {
 
 			this.writeToStream(bos);
+			Thread.sleep(10000);
 
 			return new ByteArrayInputStream(bos.toByteArray());
 
-		} catch (IOException e) {
+		} catch (IOException | InterruptedException e) {
 
 			throw new RuntimeException("failed to generate the file to stream to", e);
 		}

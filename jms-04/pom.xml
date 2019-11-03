@@ -19,10 +19,11 @@
 	</properties>
 
 	<modules>
-		<module>jms04-pdfgenerator</module>
 		<module>jms04-models</module>
-		<module>jms04-webapp</module>
 		<module>jms04-broker</module>
+		<module>jms04-pdfgenerator</module>
+		<module>jms04-webapp</module>
+
 	</modules>
 
 	<dependencyManagement>
@@ -106,9 +107,19 @@
 					<artifactId>maven-project-info-reports-plugin</artifactId>
 					<version>3.0.0</version>
 				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId>
+					<configuration>
+						<mainClass>none</mainClass>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
+		<plugins>
 
+		</plugins>
 	</build>
 
 
