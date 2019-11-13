@@ -1,12 +1,9 @@
 package fr.pantheonsorbonne.ufr27.miage.persistence;
 
-import java.io.ByteArrayInputStream;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.TreeMap;
 
 import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
@@ -35,7 +32,7 @@ public class DiplomaRepositoryImpl implements DiplomaRepository {
 					try {
 						BinaryDiplomaDTO dto = handler.consume();
 						DiplomaInfo info = diplomas.keySet().stream().filter(d -> d.getId() == dto.getId()).findAny()
-								.orElseThrow();
+								.orElseThrow(() -> new NoSuchElementException());
 						diplomas.put(info, dto.getData());
 					} catch (NoSuchElementException e) {
 						System.err.println("received diploma for a request that isn't ours");
@@ -84,7 +81,7 @@ public class DiplomaRepositoryImpl implements DiplomaRepository {
 	@Override
 	public byte[] getDiploma(Integer id) {
 		Optional<DiplomaInfo> diplomaSpec = diplomas.keySet().stream().filter(k -> k.getId() == id).findFirst();
-		if (diplomaSpec.isEmpty())
+		if (!diplomaSpec.isPresent())
 			return null;
 		else {
 

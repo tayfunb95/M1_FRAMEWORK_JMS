@@ -2,9 +2,8 @@ package fr.pantheonsorbonne.miage.jms;
 
 import java.io.Closeable;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringReader;
-import java.io.StringWriter;
-import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
@@ -14,14 +13,11 @@ import javax.jms.BytesMessage;
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
-import javax.jms.Message;
 import javax.jms.MessageConsumer;
 import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.Session;
-import javax.jms.StreamMessage;
 import javax.jms.TextMessage;
-import javax.jms.Topic;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 
@@ -57,7 +53,6 @@ public class PdfGeneratorMessageHandler implements Closeable {
 			session = connection.createSession();
 			diplomaRequestConsummer = session.createConsumer(requestsQueue);
 			diplomaFileProducer = session.createProducer(filesQueue);
-			
 
 		} catch (JMSException e) {
 			throw new RuntimeException(e);
@@ -76,7 +71,6 @@ public class PdfGeneratorMessageHandler implements Closeable {
 
 		} catch (JMSException | JAXBException e) {
 			System.out.println("failed to consume message ");
-			
 
 		}
 	}
@@ -85,7 +79,11 @@ public class PdfGeneratorMessageHandler implements Closeable {
 
 		try {
 			DiplomaGenerator generator = new MiageDiplomaGenerator(diploma.getStudent());
-			this.sendBinaryDiplomy(diploma, generator.getContent().readAllBytes());
+			InputStream is = generator.getContent();
+			byte[] data = new byte[is.available()];
+			is.read(data);
+			this.sendBinaryDiplomy(diploma, data);
+			is.close();
 		} catch (IOException e) {
 			System.err.println("failed to generate Diploma");
 		}

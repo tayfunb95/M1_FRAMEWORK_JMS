@@ -71,6 +71,11 @@
 
 
 
+
+
+
+
+
 	</dependencies>
 
 	<build>
@@ -125,13 +130,15 @@
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>1.6.0</version>
 				<configuration>
-							<skip>false</skip>
-							<mainClass>fr.pantheonsorbonne.ufr27.miage.AppBroker</mainClass>
+					<skip>false</skip>
+					<mainClass>fr.pantheonsorbonne.ufr27.miage.AppBroker</mainClass>
 
 
-						</configuration>
-				
+				</configuration>
+
 			</plugin>
+
+			
 		</plugins>
 	</build>
 </project>

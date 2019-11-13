@@ -14,6 +14,8 @@ Demonstrate a complex scenario where a webapp calls a remote service through JMS
 ```bash
 mvn clean package install
 ```
+then start the components in 3 differents terminals
+
 ## start the broker ##
 ```bash
 cd jms04-broker
